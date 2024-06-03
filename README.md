@@ -72,8 +72,7 @@ We welcome contributions from the community to enhance the application. If you w
 3. Commit your changes and push them to your fork.
 4. Open a pull request with a detailed description of your changes.
 
-## License
-**TakeNotes** is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
+
 
 ## Contact
 For any questions or support, please open an issue on the GitHub repository or contact the maintainers.
