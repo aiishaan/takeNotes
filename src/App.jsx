@@ -3,7 +3,7 @@ import Editor from "./components/Editor"
 import Sidebar from './components/Sidebar'
 import Split from "react-split"
 import {nanoid} from "nanoid"
-import { onSnapshot, addDoc, doc, deleteDoc } from 'firebase/firestore'
+import { onSnapshot, addDoc, doc, deleteDoc, setDoc } from 'firebase/firestore'
 import {notesCollection, db} from './firebase'
 
 import "react-mde/lib/styles/css/react-mde-all.css";
@@ -39,28 +39,17 @@ export default function App() {
   
     async function createNewNote() {
       const newNote = {
-          body: "# Type your markdown note's title here"
+          body: "# Type your markdown note's title here",
+          createdAt: Date.now(),
+          updatedAt: Date.now()
       }
       const newNoteReff = await addDoc(notesCollection, newNote)
       setCurrentNoteId(newNoteReff.id)
   }
   
-  function updateNote(text) {
-      setNotes(oldNotes => {
-        const newNotes = []
-        for(let i = 0; i < oldNotes.length; i++){
-          const oldNote = oldNotes[i]
-          if(oldNote.id === currentNoteId) {
-            newNotes.unshift({...oldNote, body: text})
-          }
-          else {
-            newNotes.push(oldNote)
-          }
-        }
-        
-        return newNotes
-
-      })
+  async function updateNote(text) {
+    const docRef = doc(db, "notes", currentNoteId)
+    await setDoc(docRef, {body: text, updatedAt: Date.now()}, {merge:true})
   }
 
   async function deleteNote(noteId) {
