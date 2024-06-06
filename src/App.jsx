@@ -15,6 +15,8 @@ export default function App() {
 
   const [currentNoteId, setCurrentNoteId] = useState("")
 
+  const [tempNoteText, setTempNoteText] = useState("")
+
   const currentNote = notes.find(note => note.id === currentNoteId) 
   || notes[0]
 
@@ -38,6 +40,12 @@ export default function App() {
         setCurrentNoteId(notes[0]?.id)
     }
   },[notes])
+
+  useEffect(()=>{
+    if (currentNote) {
+        setTempNoteText(currentNote.body)
+    }
+  },[currentNote])
   
     async function createNewNote() {
       const newNote = {
@@ -78,8 +86,8 @@ export default function App() {
                   deleteNote={deleteNote}
               />
                   <Editor 
-                      currentNote={currentNote} 
-                      updateNote={updateNote} 
+                      tempNoteText={tempNoteText} 
+                      setTempNoteText={setTempNoteText} 
                   />
               
           </Split>
