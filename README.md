@@ -1,7 +1,7 @@
 # TakeNotes
 
 ## Overview
-**TakeNotes** is a note-taking web application built with React. It allows users to create, edit, and delete notes efficiently The app is designed to provide a simple and intuitive interface for organizing personal and professional notes.
+**TakeNotes** is a note-taking web application built with React. It allows users to create, edit, and delete notes efficiently. The app is designed to provide a simple and intuitive interface for organizing personal and professional notes.
 
 ## Features
 - Create new notes with a title and body.
